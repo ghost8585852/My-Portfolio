@@ -1,0 +1,179 @@
+ /* Define Neon Colors and Background */
+        :root {
+            --bg-dark: #070718; /* Slightly darker base */
+            --bg-texture: #101020; /* For texture/subtle noise */
+            --neon-cyan: #00FFFF;
+            --neon-pink: #FF1493;
+            --text-color: #E0E0FF;
+            --border-color: #1A1A3A;
+        }
+
+        /* Base Body Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-color);
+            line-height: 1.6;
+            /* Aesthetic background pattern/texture */
+            background-image: radial-gradient(circle at center, var(--bg-texture) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Custom Scrollbar for Project Section - Removed as it's now a grid */
+        .horizontal-scroll-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .horizontal-scroll-container::-webkit-scrollbar-track {
+            background: var(--border-color);
+            border-radius: 10px;
+        }
+        .horizontal-scroll-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+            border-radius: 10px;
+        }
+
+        /* NEON GLOW STYLES */
+
+        /* 1. Primary Text Glow (Cyan) */
+        .text-neon-cyan {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6); /* Increased softness */
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* PULSE ANIMATION FOR LOGO (NEW) */
+        @keyframes neon-pulse {
+            0%, 100% { text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan); }
+            50% { text-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-cyan), 0 0 40px rgba(0, 255, 255, 0.4); }
+        }
+        .logo-pulse {
+            animation: neon-pulse 3s ease-in-out infinite alternate;
+        }
+
+        /* 2. Secondary Text Glow (Pink) */
+        .text-neon-pink {
+            color: var(--neon-pink);
+            text-shadow: 0 0 8px rgba(165, 69, 120, 0.7); /* Increased softness */
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* 3. Button/Interactive Element Glow (Cyan) */
+        .neon-btn {
+            background-color: transparent;
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 12px var(--neon-cyan), inset 0 0 12px var(--neon-cyan);
+            transition: all 0.4s ease-in-out;
+            color: var(--neon-cyan);
+        }
+        .neon-btn:hover {
+            color: var(--bg-dark);
+            background-color: var(--neon-cyan);
+            box-shadow: 0 0 25px var(--neon-cyan), 0 0 50px var(--neon-cyan);
+            transform: scale(1.05);
+        }
+
+        /* 3b. Pink Button Glow */
+        .neon-btn.pink {
+            border: 2px solid var(--neon-pink);
+            box-shadow: 0 0 12px var(--neon-pink), inset 0 0 12px var(--neon-pink);
+            color: var(--neon-pink);
+        }
+        .neon-btn.pink:hover {
+            color: var(--bg-dark);
+            background-color: var(--neon-pink);
+            box-shadow: 0 0 25px var(--neon-pink), 0 0 50px var(--neon-pink);
+            transform: scale(1.05);
+        }
+
+
+        /* 4. Skill Badge Glow (Pink) */
+        /* FLICKER ANIMATION FOR SKILLS (NEW) */
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                box-shadow: 0 0 5px var(--neon-pink);
+            }
+            20%, 24%, 55% {
+                box-shadow: 0 0 10px var(--neon-pink), 0 0 15px rgba(255, 20, 147, 0.5);
+            }
+        }
+
+        .skill-badge {
+            background-color: #1a0a1a;
+            border: 1px solid var(--neon-pink);
+            animation: flicker 4s linear infinite; /* Apply flicker */
+            transition: all 0.3s ease;
+        }
+        .skill-badge:hover {
+            box-shadow: 0 0 15px var(--neon-pink), 0 0 35px var(--neon-pink); /* Stronger hover effect */
+            transform: translateY(-4px) scale(1.02);
+            z-index: 10;
+            animation: none; /* Stop flicker on hover */
+        }
+        
+        /* 5. Project Card Glow (Subtle Cyan on hover) */
+        .project-card {
+            border: 1px solid var(--border-color);
+            background-color: #121225;
+            transition: all 0.3s ease;
+            overflow: hidden; /* Added to keep images contained */
+        }
+        .project-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 18px rgba(0, 255, 255, 0.6); /* Stronger hover effect */
+            transform: translateY(-4px); /* Changed from -8px for a gentler lift */
+        }
+
+        /* --- PROFILE PICTURE STYLES (NEW) --- */
+        .profile-pic {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink), 0 0 30px rgba(255, 20, 147, 0.4);
+            transition: all 0.5s ease;
+        }
+        
+        .profile-pic:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px rgba(0, 255, 255, 0.6);
+            transform: rotate(2deg) scale(1.05);
+        }
+
+        /* --- SCROLL PROGRESS BAR STYLING (EXISTING) --- */
+        #scroll-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px; /* Thin line */
+            width: 0%; /* Starts at 0, updated by JS */
+            /* Neon Gradient from Cyan to Pink */
+            background: linear-gradient(90deg, var(--neon-cyan) 0%, var(--neon-pink) 100%); 
+            z-index: 1000; /* Ensure it is on top of everything */
+            transition: width 0.1s linear; /* Smooth update */
+            box-shadow: 0 0 10px var(--neon-cyan); /* Subtle glow effect */
+        }
+        .nav-text {
+            position: relative;
+            display: inline-block; /* ensures proper width for underline */
+            color: white; /* optional */
+            text-decoration: none; /* remove default underline */
+        }
+
+        .nav-text::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;           /* start hidden */
+            height: 4px;        /* thickness of underline */
+            background: white;  /* underline color */
+            transition: width 0.3s ease-in-out; /* smooth animation */
+         }
+
+        .nav-text:hover::after {
+            width: 100%; /* expand underline on hover */
+        }
+
+            
+        
